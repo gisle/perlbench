@@ -33,11 +33,10 @@ if (my $o = $res->{loop_overhead_relative}) {
     }
 }
 
-if (0) {
-    require Data::Dump;
+if ($opt{verbose} && eval { require Data::Dump }) {
     delete $res->{x};
     delete $res->{t};
-    Data::Dump::dump($res);
+    print "\n\$res = ", Data::Dump::dump($res), "\n";
 }
 
 sub usage {
