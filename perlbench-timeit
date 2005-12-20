@@ -6,9 +6,10 @@ use Getopt::Long qw(GetOptions);
 
 my %opt;
 GetOptions(\%opt,
-   'repeat=n',
+   'repeat=i',
+   'enough=f',
    'use-avg',
-   'verbose',
+   'verbose+',
    'print-loop-overhead',
 ) || usage();
 
@@ -17,7 +18,7 @@ usage() if @ARGV;
 
 $code .= ";" unless $code =~ /;\s*$/;
 
-my $res = timeit($code, repeat => $opt{repeat}, verbose => $opt{verbose});
+my $res = timeit($code, repeat => $opt{repeat}, enough => $opt{enough}, verbose => $opt{verbose});
 die "Failed" unless $res;
 
 my $t = $res->{$opt{use_avg} ? "avg" : "med"};
@@ -33,7 +34,7 @@ if (my $o = $res->{loop_overhead_relative}) {
     }
 }
 
-if ($opt{verbose} && eval { require Data::Dump }) {
+if ($opt{verbose} && $opt{verbose} > 1 && eval { require Data::Dump }) {
     delete $res->{x};
     delete $res->{t};
     print "\n\$res = ", Data::Dump::dump($res), "\n";
