@@ -8,7 +8,7 @@ my %opt;
 GetOptions(\%opt,
    'repeat=i',
    'enough=f',
-   'use-avg',
+   'show-avg',
    'verbose+',
    'print-loop-overhead',
 ) || usage();
@@ -21,9 +21,9 @@ $code .= ";" unless $code =~ /;\s*$/;
 my $res = timeit($code, repeat => $opt{repeat}, enough => $opt{enough}, verbose => $opt{verbose});
 die "Failed" unless $res;
 
-my $t = $res->{$opt{use_avg} ? "avg" : "med"};
-my $d = $res->{stddev}*2;
-print sec_f($t, $d), "\n";
+print "med = " if $opt{'show-avg'} || $opt{verbose};
+print sec_f($res->{med}, $res->{med} - $res->{min}), "\n";
+print "avg = ", sec_f($res->{avg}, 2 * $res->{stddev}), "\n" if $opt{'show-avg'} || $opt{verbose};
 
 if (my $o = $res->{loop_overhead_relative}) {
     $o *= 100;
