@@ -52,18 +52,25 @@ benchmarks/string/tr.t
 Changes
 cpu_factor
 empty.t
+INSTALL.SKIP
 lib/PerlBench.pm
 lib/PerlBench/Results.pm
 lib/PerlBench/Stats.pm
 lib/PerlBench/Utils.pm
+LICENSE
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
+MANIFEST.SKIP
 overlib.js
+perlbench-enough
 perlbench-report
 perlbench-run
 perlbench-runtests
 perlbench-timeit
-README
+README.pod
+res-run.pl
+res-summary.pl
 style.css
 t/sec_f.t
 t/stats.t
+xt/changes.t

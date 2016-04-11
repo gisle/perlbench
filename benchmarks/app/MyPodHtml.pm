@@ -1,6 +1,7 @@
 # This is a snapshot of Pod::Html used for benchmarking purposes.
 
-package MyPodHtml;
+package # hide from PAUSE
+	MyPodHtml;
 use strict;
 require Exporter;
 
@@ -18,6 +19,8 @@ use File::Spec::Unix;
 use Getopt::Long;
 
 use locale;	# make \w work right in non-ASCII lands
+
+=encoding utf8
 
 =head1 NAME
 

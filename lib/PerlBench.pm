@@ -4,13 +4,20 @@ use strict;
 use base 'Exporter';
 our @EXPORT_OK = qw(timeit timeit_once make_timeit_sub make_timeit_sub_code);
 
-our $VERSION = "0.93";
+our $VERSION = "1.001";
 
 use PerlBench::Stats qw(calc_stats);
 use PerlBench::Utils qw(sec_f);
 use Time::HiRes qw(gettimeofday);
 use Carp qw(croak);
 
+=encoding utf8
+
+=head1 NAME
+
+PerlBench - compare several perls's performance
+
+=cut
 
 sub timeit {
     my($code, %opt) = @_;
